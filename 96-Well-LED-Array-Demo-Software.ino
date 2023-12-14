@@ -10,7 +10,7 @@
  *  Cell A12 is byte 7, bit 7.
  *  When you have written your intended pattern, call myLED.printDirect(state) to send the pattern to the board at time you desire.
  *  
- *  This sofware is based on and uses the TLC591x library by Andy4495: https://github.com/Andy4495/TLC591x
+ *  This software is based on and uses the TLC591x library by Andy4495: https://github.com/Andy4495/TLC591x
  *  To install this library in your Arduino IDE, go to Sketch -> Include Library -> Manage Libraries... -> Search for TL591x
  */
 
