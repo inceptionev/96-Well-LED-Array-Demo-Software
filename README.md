@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="460" src="./CheckerboardTest.GIF">
+</p>
+
 This demo software was written to control the 96-Well LED board.
 It was tested using an Arduino RP2040 Connect module.
 
