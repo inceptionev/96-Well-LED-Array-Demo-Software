@@ -5,7 +5,7 @@
 This demo software was written to control the 96-Well LED board.
 It was tested using an Arduino RP2040 Connect module.
 
- *  This sofware is based on and uses the TLC591x library by Andy4495: https://github.com/Andy4495/TLC591x
+ *  This software is based on and uses the TLC591x library by Andy4495: https://github.com/Andy4495/TLC591x
  *  To install this library in your Arduino IDE, go to Sketch -> Include Library -> Manage Libraries... -> Search for TL591x
 
 To interface with the 96-Well LED Board:
