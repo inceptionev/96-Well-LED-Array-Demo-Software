@@ -2,12 +2,13 @@
 /* Bringup Test Software written by Edwin Chiu 2023
  *  To interface with the 96-Well LED Board
  *  Write to the array state[], an array with bytes with length equal to the number of chips on the board
- *  The upper-right cell of the board (well A1) is byte 0, bit 0.
- *  The next cell down (cell B1) is byte 0, bit 1.
- *  Cell A2 is byte 1, bit 0.
- *  Cell B2 is byte 1, bit 1.
+ *  The bottom-left cell of the board (well H1) is byte 0, bit 0.
+ *  The next cell up (cell G1) is byte 0, bit 1.
+ *  Cell H2 is byte 1, bit 0.
+ *  Cell G2 is byte 1, bit 1.
  *  ...etc
- *  Cell H12 is byte 7, bit 7.
+ *  Cell A12 is byte 7, bit 7.
+ *  When you have written your intended pattern, call myLED.printDirect(state) to send the pattern to the board at time you desire.
  *  
  *  This sofware is based on and uses the TLC591x library by Andy4495: https://github.com/Andy4495/TLC591x
  *  To install this library in your Arduino IDE, go to Sketch -> Include Library -> Manage Libraries... -> Search for TL591x
@@ -50,11 +51,11 @@ void loop() {
  
 // One-by-one control test
   for (int i=0; i < NUMCHIPS*8; i++) {
-    chipIndex = uint8_t(i/8);
-    state[chipIndex] = pow(2,(i%chipIndex));
-    myLED.printDirect(state);
+    chipIndex = i/8;
+    state[chipIndex] = pow(2,i%8);
     delay(100);
-    state[chipIndex] = 0x00; //blank the line we just wrote before next iteration
+    myLED.printDirect(state);
+    state[chipIndex] = 0x00;  // blank the line we just wrote
   }
 
  // Checkerboard (i.e. whole board) test
@@ -62,8 +63,8 @@ void loop() {
     for (int k=0; k < NUMCHIPS; k++) {
       (k+i)%2 == 0 ? state[k] = 0b01010101 : state[k] = 0b10101010;
     }
-    myLED.printDirect(state);
     delay(500);
+    myLED.printDirect(state);
   }
 
 // Performance test
@@ -113,6 +114,7 @@ void loop() {
     myLED.printDirect(state);
   }
 
+  // blank the board
   for (int i=0; i < NUMCHIPS; i++) {
     state[i] = 0x00;
   }
